@@ -42,7 +42,7 @@ class OmniglotNShotDataset():
             self.x = [] # Free memory
 
             for classes in temp.keys():
-                self.x.append(np.array(temp[temp.keys()[classes]]))
+                self.x.append(np.array(temp[classes]))
             self.x = np.array(self.x)
             temp = [] # Free memory
             np.save(os.path.join(dataroot,'data.npy'),self.x)
