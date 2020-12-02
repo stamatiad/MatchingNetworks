@@ -102,7 +102,7 @@ class OmniglotNShotDataset():
         """
         n_samples = self.samples_per_class * self.classes_per_set
         data_cache = []
-        for sample in range(1000):
+        for sample in range(100):
             support_set_x = np.zeros((self.batch_size, n_samples, 28, 28, 1))
             support_set_y = np.zeros((self.batch_size, n_samples))
             target_x = np.zeros((self.batch_size, self.samples_per_class, 28, 28, 1), dtype=np.int)

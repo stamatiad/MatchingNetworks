@@ -112,12 +112,13 @@ class OneShotBuilder:
                 # update the optimizer learning rate
                 self.__adjust_learning_rate(optimizer)
 
-                iter_out = "tr_loss: {}, tr_accuracy: {}".format(c_loss_value.data[0], acc.data[0])
+                iter_out = f"tr_loss: {c_loss_value.data.item()}, tr_accuracy:" \
+                           f" {acc.data.item()}"
                 pbar.set_description(iter_out)
 
                 pbar.update(1)
-                total_c_loss += c_loss_value.data[0]
-                total_accuracy += acc.data[0]
+                total_c_loss += c_loss_value.data.item()
+                total_accuracy += acc.data.item()
 
                 self.total_train_iter += 1
                 if self.total_train_iter % 2000 == 0:
@@ -168,12 +169,13 @@ class OneShotBuilder:
                     acc, c_loss_value = self.matchingNet(x_support_set, y_support_set_one_hot,
                                                          x_target, y_target)
 
-                iter_out = "val_loss: {}, val_accuracy: {}".format(c_loss_value.data[0], acc.data[0])
+                iter_out = f"val_loss: {c_loss_value.data.item()}, " \
+                           f"val_accuracy: {acc.data.item()}"
                 pbar.set_description(iter_out)
                 pbar.update(1)
 
-                total_val_c_loss += c_loss_value.data[0]
-                total_val_accuracy += acc.data[0]
+                total_val_c_loss += c_loss_value.data.item()
+                total_val_accuracy += acc.data.item()
 
         total_val_c_loss = total_val_c_loss / total_val_batches
         total_val_accuracy = total_val_accuracy / total_val_batches
@@ -220,12 +222,13 @@ class OneShotBuilder:
                     acc, c_loss_value = self.matchingNet(x_support_set, y_support_set_one_hot,
                                                          x_target, y_target)
 
-                iter_out = "test_loss: {}, test_accuracy: {}".format(c_loss_value.data[0], acc.data[0])
+                iter_out = f"test_loss: {c_loss_value.data.item()}, " \
+                           f"test_accuracy: {acc.data.item()}"
                 pbar.set_description(iter_out)
                 pbar.update(1)
 
-                total_test_c_loss += c_loss_value.data[0]
-                total_test_accuracy += acc.data[0]
+                total_test_c_loss += c_loss_value.data.item()
+                total_test_accuracy += acc.data.item()
             total_test_c_loss = total_test_c_loss / total_test_batches
             total_test_accuracy = total_test_accuracy / total_test_batches
         return total_test_c_loss, total_test_accuracy
