@@ -129,6 +129,7 @@ class OneShotBuilder:
         total_accuracy = total_accuracy / total_train_batches
         return total_c_loss, total_accuracy
 
+    @torch.no_grad()
     def run_validation_epoch(self, total_val_batches):
         """
         Runs one validation epoch
@@ -182,6 +183,7 @@ class OneShotBuilder:
 
         return total_val_c_loss, total_val_accuracy
 
+    @torch.no_grad()
     def run_testing_epoch(self, total_test_batches):
         """
         Runs one testing epoch
